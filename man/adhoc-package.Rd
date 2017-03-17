@@ -25,7 +25,7 @@ Maintainer: Gontran Sonet <gosonet@gmail.com>
 }
 
 \references{
-Sonet G, Jordaens K, Nagy ZT, Breman FC, De Meyer M, Backeljau T, Virgilio M (2013) Adhoc: an R package to calculate ad hoc distance thresholds for DNA barcoding identification. Zookeys.
+Sonet G, Jordaens K, Nagy ZT, Breman FC, De Meyer M, Backeljau T & Virgilio M", "(2013) Adhoc: an R package to calculate ad hoc distance thresholds for DNA barcoding identification, Zookeys, 365:329-336. http://zookeys.pensoft.net/articles.php?id=3057.
 
 Virgilio M, Jordaens K, Breman FC, Backeljau T, De Meyer M. (2012) Identifying insects with incomplete DNA barcode libraries, African Fruit flies (Diptera: Tephritidae) as a test case. PLoS ONE 7(2) e31581. doi: 10.1371/journal.pone.0031581.
 }

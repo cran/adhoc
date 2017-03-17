@@ -110,7 +110,7 @@ myth<-seq(from=0, to=as.numeric(max(BM$distBM,na.rm=TRUE)),length=NbrTh);
    myreg<-c();
    THR<-c();
    myreg<-lm(RE~thres,IDcheck);
-   myreg$coefficients[3:4]<-0;# this is to uniformise the format of the regression with the polynomial regression (coefficient for x^2 and x^3 = 0)
+   myreg$coefficients[3:4]<-0;# this is to uniformise the format of the regression with the polynomial regression (coefficients for x^2 and x^3 = 0)
   }
 
 #### POLYNOMIAL REGRESSION ####
@@ -122,14 +122,15 @@ myth<-seq(from=0, to=as.numeric(max(BM$distBM,na.rm=TRUE)),length=NbrTh);
    IDcheck$thres2<-IDcheck$thres^2;
    IDcheck$thres3<-IDcheck$thres^3;
    myreg<- lm(RE ~ thres + thres2 + thres3, IDcheck);
-   fp<-polynomial(myreg$coefficient);
+   fp<-polynomial(myreg$coefficients);
    solp<-solve(fp,ErrProb);
    THR<-solp[(solp > 0) & (solp < max(IDcheck$thres))];
   }
    
 #### OUTPUT ####
   if (length(grep("FP", BM$IDcheck))==0) stop("All identifications are correct when using the best match method (no distance threshold considered). An ad hoc distance threshold for best close match identification cannot be calculated");
-  THR<-(ErrProb-as.numeric(myreg$coefficient[1]))/as.numeric(myreg$coefficient[2]);
-  if (THR<0) stop("The estimated relative identification error (RE) cannot be reached using this reference library");
+  if (Reg=="linear" && myreg$coefficients<0) stop("The estimated relative identification error (RE) cannot be reached using this reference library (check reference library or increase argument ErrProb, cf. Sonet et al. 2013).");
+  THR<-(ErrProb-as.numeric(myreg$coefficients[1]))/as.numeric(myreg$coefficients[2]);
+  if (THR<0) stop("The estimated relative identification error (RE) cannot be reached using this reference library (check reference library or increase argument ErrProb, cf. Sonet et al. 2013).");
   return(list(BM=BM,IDcheck=IDcheck, reg=myreg, ErrProb=ErrProb, THR=THR, redflagged=redflagged, redflaggedSP=redflaggedSP));
 }

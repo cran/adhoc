@@ -1,0 +1,13 @@
+citHeader("To cite package adhoc in publications use:")
+
+year <- 2013
+
+citEntry(entry = "Article", 
+title = "Adhoc: an R package to calculate ad hoc distance thresholds for DNA barcoding identification", 
+author = personList(as.person("Gontran Sonet"), as.person("Kurt Jordaens"), as.person("Zoltan T. Nagy"), as.person("Floris C. Breman"), as.person("Marc De Meyer"), as.person("Thierry Backeljau"), as.person("Massimiliano Virgilio")), 
+year = "2013", 
+journal = "Zookeys",
+volume = "365",
+pages = "329--336",
+url = "http://zookeys.pensoft.net/articles.php?id=3057",
+textVersion = paste0("Sonet G, Jordaens K, Nagy ZT, Breman FC, De Meyer M, Backeljau T & Virgilio M", "(2013) Adhoc: an R package to calculate ad hoc distance thresholds for DNA barcoding identification, Zookeys, 365:329-336"))

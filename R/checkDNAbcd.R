@@ -1,5 +1,5 @@
-checkDNAbcd <-
-function(seq,DistModel="K80") {   
+#FUNCTION checkdata
+checkDNAbcd<-function(seq,DistModel="K80") {   
  mysplit<-c();
  mylabels<-c();
  listsp<-data.frame();
@@ -17,14 +17,37 @@ function(seq,DistModel="K80") {
   else {
    listsp$Nhap[[i]]<- listsp$Nseq[[i]];
   }
- } 
- DNAlength<-dim(seq)[2]-as.numeric(checkDNA(seq));
+ }
+ mytbl<-c(); 
+ for (j in 1:dim(seq)[1]){
+  mytbl<-table(as.character(seq[j,]));
+  DNAlength[j]<-dim(seq)[2]-sum(mytbl[which(names(mytbl)=="-" |names(mytbl)=="?"| names(mytbl)=="N"| names(mytbl)=="N" |names(mytbl)=="_")]);
+ }
+ 
+#INTRA- AND INTERSPECIFIC DISTANCES
  dist<-dist.dna(seq,DistModel,as.matrix=TRUE,pairwise.deletion=TRUE);
  diag(dist)<-NA
- spdist<-c();
- spdist<-sppDist(dist,paste(mylabels$genus,mylabels$species,sep="_"))
+ disttmp<-matrix();
+ disttmp<-dist;
+ disttmp[upper.tri(disttmp,diag=TRUE)]<-NA;
+ spdist<-list(); #intra and inter
+ for (i in 1:length(listsp$species)){   #intraspecific dist
+  if (length(grep(as.character(listsp$species[i]),labels(seq)))>0) {
+   x<-matrix();
+   x<-disttmp[grep(as.character(listsp$species[i]),labels(seq)),grep(as.character(listsp$species[i]),labels(seq))];
+   spdist$intra<-c(spdist$intra,as.vector(as.numeric(x)));
+   spdist$intra<-na.omit(spdist$intra);
+  }
+ }
+ for (i in 1:length(listsp$species)){  #interspecific dist
+  x<-matrix();
+  x<-disttmp[grep(as.character(listsp$species[i]),labels(seq)),-grep(as.character(listsp$species[i]),labels(seq))];
+  spdist$inter<-c(spdist$inter,as.vector(as.numeric(x))); 
+  spdist$inter<-na.omit(spdist$inter);
+ }
  colnames(dist)<-paste(mylabels$genus,mylabels$species,sep="_");
- write.csv(mylabels,"mylabels.csv"); 
- write.csv(listsp,"listsp.csv"); 
+ write.csv(mylabels,"mylabels.csv");
+ write.csv(listsp,"listsp.csv");
 return(list(mylabels=mylabels, listsp=listsp, DNAlength=DNAlength, dist=dist, spdist=spdist, seq=seq));
 }
+

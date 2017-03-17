@@ -29,7 +29,7 @@ Reg: The user has the possibility to estimate the ad hoc distance threshold on t
 \item{redflaggedSP}{ lists all species names that are involved in the same ambiguous identification. }
 }
 \references{ 
-Sonet G, Jordaens K, Nagy ZT, Breman FC, De Meyer M, Backeljau T, Virgilio M (2013) Adhoc: an R package to calculate ad hoc distance thresholds for DNA barcoding identification. Zookeys.
+Sonet G, Jordaens K, Nagy ZT, Breman FC, De Meyer M, Backeljau T & Virgilio M", "(2013) Adhoc: an R package to calculate ad hoc distance thresholds for DNA barcoding identification, Zookeys, 365:329-336. http://zookeys.pensoft.net/articles.php?id=3057.
 
 Venables B, Hornik K, Maechler M (2013) polynom: a collection of functions to implement a class for univariate polynomial manipulations. R package version 1.3-7. http://cran.r-project.org/web/packages/polynom/index.html.
 

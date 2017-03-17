@@ -1,2 +1,5 @@
+import(pegas, polynom)
+importFrom("stats", "lm","na.omit")
+importFrom("utils", "write.csv")
+importFrom("ape", "dist.dna")
 export("checkDNAbcd", "adhocTHR")
-import(spider,polynom, ape)
